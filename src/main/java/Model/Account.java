@@ -4,11 +4,30 @@ public class Account {
     private String userName;
     private String password;
     private String role;
+    private String fullName;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     public Account(String userName, String password, String role) {
         this.userName = userName;
         this.password = password;
         this.role = role;
+    }
+    public Account(String userName, String password,String role,String fullName) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.fullName = fullName;
+    }
+    public Account(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
     public String getUserName() {
@@ -27,8 +46,12 @@ public class Account {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public int getRole() {
+
+        if(role == "admin"){
+            return 1;
+        }
+        else{return 0;}
     }
 
     public void setRole(String role) {
@@ -37,7 +60,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "userName=" + userName + ", password=" + password + ", role=" + role + '}';
+        return "Account{" + "userName=" + userName + ", password=" + password + ", role=" + role + ",Fullname="+fullName+'}';
     }
 
 

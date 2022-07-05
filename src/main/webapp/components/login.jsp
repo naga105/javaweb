@@ -13,7 +13,7 @@
             </p>
             <p class="flex flex-col items-center justify-center mt-10 text-center">
                 <span>Don't have an account?</span>
-                <a href="#" class="underline">Get Started!</a>
+                <a href="signup.jsp" class="underline">Get Started!</a>
             </p>
             <p class="mt-6 text-sm text-center text-gray-300">
                 Read our <a href="#" class="underline">terms</a> and <a href="#" class="underline">conditions</a>
@@ -26,7 +26,7 @@
                     <label class="text-sm font-semibold text-gray-500">Username</label>
                     <input
                             type="text"
-                            name="username"
+                            name="name"
                             autofocus
                             class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                     />

@@ -16,22 +16,18 @@ public class AccountDAO {
 
     public  Account login(String username, String password) {
         try {
-            String query = "select * from Login where userName=? and password=?";
+            String query = "select * from Login where username=? and password=?";
 
             conn = new DBContext().getConnection();
-
             ps = conn.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password);
-
-
             rs = ps.executeQuery();
 
             Account acc = null;
             while (rs.next()) {
-                acc = new Account(rs.getString(1), rs.getString(2), rs.getString(3));
+                acc = new Account(rs.getString(1), rs.getString(2));
                 return acc;
-
             }
             System.out.println(acc);
         } catch (SQLException ex) {
@@ -44,16 +40,16 @@ public class AccountDAO {
 
     public Account signUp(Account acc) {
         try {
-            String query = "insert into Login values (?, ?, ?)";
+            String query = "insert into Login values (?, ?, ?, ?,?)";
 
             conn = new DBContext().getConnection();
 
             ps = conn.prepareStatement(query);
             ps.setString(1, acc.getUserName());
             ps.setString(2, acc.getPassword());
-            ps.setString(3, acc.getRole());
-
-
+            ps.setInt(3, acc.getRole());
+            ps.setString(4, acc.getFullName());
+            ps.setString(5,"null");
             ps.executeUpdate();
 
 

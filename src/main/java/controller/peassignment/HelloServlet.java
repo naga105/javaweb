@@ -1,27 +1,43 @@
 package controller.peassignment;
 
-import java.io.*;
+import DAO.AccountDAO;
+import Model.Account;
+
+import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.IOException;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "Lmao", value = "/Lmao")
 public class HelloServlet extends HttpServlet {
-    private String message;
-
-    public void init() {
-        message = "Hello World!";
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String username = request.getParameter("name");
+        String password = request.getParameter("password");
+        Account account = new AccountDAO().login(username, password);
+        System.out.println(username+password);
+        if (account != null) {
+            session.setAttribute("account", account);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else{
+            request.setAttribute("error", "Username or password is incorrect");
+            request.getRequestDispatcher("sign.jsp").forward(request, response);
+        }
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-    }
-
-    public void destroy() {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("name");
+        String password = request.getParameter("password");
+        String Fullname= request.getParameter("fullname");
+        String role="user";
+        Account acc = new Account(username,password,role,Fullname);
+        AccountDAO accd = new AccountDAO();
+        System.out.println(acc.getFullName());
+        System.out.println(acc);
+        accd.signUp(acc);
+        System.out.println("brum brum");
+        request.getRequestDispatcher("sign.jsp").forward(request, response);
     }
 }
