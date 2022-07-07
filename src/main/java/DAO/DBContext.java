@@ -1,8 +1,11 @@
 package DAO;
 
+import Model.Product;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +32,9 @@ public class DBContext {
             Connection connection = new DBContext().getConnection();
 
             if(connection!=null) {
-                System.out.println("Connect successfully to dtb");
+                ArrayList<Product>  pcd= new DAO().displayEachPage("office",1,3);
+                System.out.println(pcd);
+
 
             } else {
                 System.out.println("Connect failed");

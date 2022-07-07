@@ -6,10 +6,9 @@ public class Cart {
     private Double price;
     private int quantity;
 
-    public Cart(String id, String productName, Double price, int quantity) {
+    public Cart(String id, String productName, int quantity) {
         this.id = id;
         this.productName = productName;
-        this.price = price;
         this.quantity = quantity;
     }
 

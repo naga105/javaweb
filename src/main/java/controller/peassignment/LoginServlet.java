@@ -1,6 +1,6 @@
 package controller.peassignment;
 
-import DAO.AccountDAO;
+import DAO.DAO;
 import Model.Account;
 
 import javax.servlet.*;
@@ -15,7 +15,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String username = request.getParameter("name");
         String password = request.getParameter("password");
-        Account account = new AccountDAO().login(username, password);
+        Account account = new DAO().login(username, password);
         System.out.println(username+password);
         if (account != null) {
             session.setAttribute("account", account);
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         String Fullname= request.getParameter("fullname");
         String role="user";
         Account acc = new Account(username,password,role,Fullname);
-        AccountDAO accd = new AccountDAO();
+        DAO accd = new DAO();
         System.out.println(acc.getFullName());
         System.out.println(acc);
         accd.signUp(acc);
