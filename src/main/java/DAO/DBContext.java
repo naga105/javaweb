@@ -1,6 +1,8 @@
 package DAO;
 
+import Model.Cart;
 import Model.Product;
+import Model.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,11 +22,11 @@ public class DBContext {
 
         return DriverManager.getConnection(url, userID, password);
     }
-
+//jdbc:sqlserver://localhost:1433;database=hotel
     private final String serverName = "localhost";
-    private final String dbName = "Assignment";
+    private final String dbName = "hotel";
     private final String portNumber = "1433";
-    private final String userID = "sa";
+    private final String userID = "guest";
     private final String password = "123";
 
     public static void main(String[] args) {
@@ -32,8 +34,9 @@ public class DBContext {
             Connection connection = new DBContext().getConnection();
 
             if(connection!=null) {
-                ArrayList<Product>  pcd= new DAO().displayEachPage("office",1,3);
-                System.out.println(pcd);
+                DAO_2 dao= new DAO_2();
+                User user=dao.viewProfile("sa");
+                System.out.println(user);
 
 
             } else {

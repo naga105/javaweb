@@ -15,6 +15,14 @@ public class Product {
         this.price = price;
     }
 
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
+    }
+
     public String getId() {
         return id;
     }

@@ -2,14 +2,16 @@ package controller.peassignment;
 
 import DAO.DAO;
 import Model.Account;
+import Model.Cart;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
-@WebServlet(name = "LoginServlet", value = "/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "addProduct", value = "/addProduct")
+public class AddProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -19,6 +21,9 @@ public class LoginServlet extends HttpServlet {
         System.out.println(username+password);
         if (account != null) {
             session.setAttribute("account", account);
+            ArrayList<Cart> ctr = new DAO().showCart(account.getUserName());
+            System.out.println("cart size:"+ctr.size());
+            session.setAttribute("cartsize",ctr.size());
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else{
             request.setAttribute("error", "Username or password is incorrect");

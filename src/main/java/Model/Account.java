@@ -4,14 +4,19 @@ public class Account {
     private String userName;
     private String password;
     private String role;
-    private String fullName;
+    public String fullName;
+    public static String test="test nef";
+    public static String getTest(){
+        return test;
+    }
 
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public String setFullName(String fullName) {
         this.fullName = fullName;
+        return fullName;
     }
 
     public Account(String userName, String password, String role) {
